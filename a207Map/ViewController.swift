@@ -9,10 +9,15 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var myMap: MKMapView!
     
     var locationManager:CLLocationManager? = nil
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let coordinate = locations[0].coordinate
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +25,14 @@ class ViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
         
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.activityType = .automotiveNavigation
+        locationManager?.startUpdatingLocation()
+        
+        
+        myMap.userTrackingMode = .followWithHeading
+
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
 //            let latitude:CLLocationDegrees = 25.0443362
@@ -28,13 +41,13 @@ class ViewController: UIViewController {
 //                CLLocationCoordinate2DMake(latitude, longitude)
 //            let xScale:CLLocationDegrees = 0.001
 //            let yScale:CLLocationDegrees = 0.001
-//            
+//
 //            let span:MKCoordinateSpan =
 //                MKCoordinateSpan(latitudeDelta: yScale, longitudeDelta: xScale)
 //            let region:MKCoordinateRegion =
 //                MKCoordinateRegion.init(center: location, span: span)
 //            self.myMap.setRegion(region, animated: true)
-//            
+//
 //
 //
 //        }
