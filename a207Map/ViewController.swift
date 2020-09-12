@@ -70,5 +70,20 @@ class ViewController: UIViewController {
         self.myMap.addAnnotation(annotation)
         
     }
+    
+    
+    @IBAction func getLocation(_ sender: Any) {
+        if let coordinate = locationManager?.location?.coordinate{
+            let xScale:CLLocationDegrees = 0.01
+            let yScale:CLLocationDegrees = 0.01
+            let span:MKCoordinateSpan =
+                MKCoordinateSpan(latitudeDelta: yScale, longitudeDelta: xScale)
+            let region:MKCoordinateRegion =
+                MKCoordinateRegion.init(center: coordinate, span: span)
+            myMap.setRegion(region, animated: true)
+            
+        }
+    }
+    
 }
 
