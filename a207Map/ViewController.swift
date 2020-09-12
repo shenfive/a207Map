@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             let latitude:CLLocationDegrees = 25.0443362
             let longitude:CLLocationDegrees = 121.5135424
@@ -29,6 +28,12 @@ class ViewController: UIViewController {
             let region:MKCoordinateRegion =
                 MKCoordinateRegion.init(center: location, span: span)
             self.myMap.setRegion(region, animated: true)
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            annotation.title = "譯智􏼵􏼶"
+            annotation.subtitle = "我們在這兒􏷊􏼷􏼸􏵨􏲾􏷦"
+            self.myMap.addAnnotation(annotation)
 
         }
         
