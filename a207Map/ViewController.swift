@@ -11,19 +11,20 @@ import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var myMap: MKMapView!
+    @IBOutlet weak var addressTF: UITextField!
     
     var locationManager:CLLocationManager? = nil
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let coordinate = locations[0].coordinate
         
-        let xScale:CLLocationDegrees = 0.01
-        let yScale:CLLocationDegrees = 0.01
-        let span:MKCoordinateSpan =
-            MKCoordinateSpan(latitudeDelta: yScale, longitudeDelta: xScale)
-        let region:MKCoordinateRegion =
-            MKCoordinateRegion.init(center: coordinate, span: span)
-        myMap.setRegion(region, animated: true)
+//        let xScale:CLLocationDegrees = 0.01
+//        let yScale:CLLocationDegrees = 0.01
+//        let span:MKCoordinateSpan =
+//            MKCoordinateSpan(latitudeDelta: yScale, longitudeDelta: xScale)
+//        let region:MKCoordinateRegion =
+//            MKCoordinateRegion.init(center: coordinate, span: span)
+//        myMap.setRegion(region, animated: true)
         
     }
     
@@ -106,6 +107,44 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
         }
     }
+    
+    @IBAction func addressLocation(_ sender: Any) {
+        let add = addressTF.text ?? ""
+        addressToCod(address: add)
+        
+        
+
+        
+    }
+    
+    func addressToCod(address:String) {
+        let geoCoder = CLGeocoder()
+        var coordinate:CLLocationCoordinate2D? = nil
+        geoCoder.geocodeAddressString(address) { (placemarks:[AnyObject]!, error) in
+            if error != nil{
+                print(error?.localizedDescription)
+               return
+            }
+
+            if placemarks != nil && placemarks.count > 0{
+               let placemark = placemarks[0] as? CLPlacemark
+                print(placemark?.location?.coordinate)
+                if let coordinate = placemark?.location?.coordinate{
+                    let xScale:CLLocationDegrees = 0.01
+                    let yScale:CLLocationDegrees = 0.01
+                    let span:MKCoordinateSpan =
+                        MKCoordinateSpan(latitudeDelta: yScale, longitudeDelta: xScale)
+                    let region:MKCoordinateRegion =
+                        MKCoordinateRegion.init(center: coordinate, span: span)
+                    self.myMap.setRegion(region, animated: true)
+                }
+               //placemark.location.coordinate 取得經緯度的參數
+            }
+        }
+        
+    }
+    
+    
     
 }
 
