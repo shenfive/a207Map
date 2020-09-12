@@ -16,15 +16,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aF3-zd-YxQ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4bK-9o-VD4">
+                                <rect key="frame" x="20" y="64" width="374" height="32"/>
+                                <color key="backgroundColor" red="0.80215605840000004" green="0.80215605840000004" blue="0.80215605840000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="Ia7-8M-DcA"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="標準"/>
+                                    <segment title="衛星"/>
+                                    <segment title="混合"/>
+                                </segments>
+                                <connections>
+                                    <action selector="selctMapType:" destination="BYZ-38-t0r" eventType="valueChanged" id="5Uw-XY-xtZ"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="4bK-9o-VD4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="DFk-xW-ue8"/>
+                            <constraint firstItem="4bK-9o-VD4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="HcQ-a4-SFH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aF3-zd-YxQ" secondAttribute="trailing" id="O7V-au-qQD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aF3-zd-YxQ" secondAttribute="bottom" id="dFE-XX-q1Q"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4bK-9o-VD4" secondAttribute="trailing" constant="20" id="dyI-A7-bNK"/>
                             <constraint firstItem="aF3-zd-YxQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lZM-vY-ded"/>
-                            <constraint firstItem="aF3-zd-YxQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="roA-Un-Lav"/>
+                            <constraint firstItem="aF3-zd-YxQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="roA-Un-Lav"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -34,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="99"/>
+            <point key="canvasLocation" x="131.8840579710145" y="98.4375"/>
         </scene>
     </scenes>
 </document>
