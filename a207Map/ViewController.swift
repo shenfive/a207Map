@@ -29,11 +29,7 @@ class ViewController: UIViewController {
                 MKCoordinateRegion.init(center: location, span: span)
             self.myMap.setRegion(region, animated: true)
             
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = location
-            annotation.title = "譯智􏼵􏼶"
-            annotation.subtitle = "我們在這兒􏷊􏼷􏼸􏵨􏲾􏷦"
-            self.myMap.addAnnotation(annotation)
+
 
         }
         
@@ -56,5 +52,17 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func longPressAction(_ sender: UILongPressGestureRecognizer) {
+        print(sender.location(in: myMap))
+        let touchPoint = sender.location(in: myMap)
+        let location = myMap.convert(touchPoint, toCoordinateFrom: myMap)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = "譯智􏼵􏼶"
+        annotation.subtitle = "\(location.latitude):\(location.longitude)􏷊􏼷􏼸􏵨􏲾􏷦"
+        self.myMap.addAnnotation(annotation)
+        
+    }
 }
 
