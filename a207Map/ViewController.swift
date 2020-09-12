@@ -12,8 +12,14 @@ import MapKit
 class ViewController: UIViewController {
     @IBOutlet weak var myMap: MKMapView!
     
+    var locationManager:CLLocationManager? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager = CLLocationManager()
+        locationManager?.requestWhenInUseAuthorization()
+        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             let latitude:CLLocationDegrees = 25.0443362
